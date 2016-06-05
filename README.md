@@ -21,13 +21,13 @@ You must use [Dagger 2](http://google.github.io/dagger/) for dependency injectio
 
 ## Installation
 
-For Mac:
---------
-Just copy all files to `$ANDROID_STUDIO_FOLDER$/Contents/plugins/android/lib/templates/activities/$CUSTOM_TEMPLATE_FOLDER$`
+### For Mac:
 
-For Windows:
---------
-Just copy all files to `$ANDROID_STUDIO_FOLDER$\plugins\android\lib\templates\activities\$CUSTOM_TEMPLATE_FOLDER$`
+Just copy all files to `$ANDROID_STUDIO_FOLDER$/Contents/plugins/android/lib/templates/activities/MVP`
+
+### For Windows:
+
+Just copy all files to `$ANDROID_STUDIO_FOLDER$\plugins\android\lib\templates\activities\MVP`
 
 ## How to use
 
