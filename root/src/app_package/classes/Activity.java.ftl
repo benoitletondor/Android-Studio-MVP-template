@@ -1,4 +1,13 @@
-package ${packageName};
+package ${packageName}.view.impl;
+
+import android.support.annotation.NonNull;
+
+import ${packageName}.view.${viewClass};
+import ${packageName}.presenter.BasePresenter;
+import ${packageName}.presenter.${presenterClass};
+import ${packageName}.injection.AppComponent;
+import ${packageName}.injection.${moduleClass};
+import ${packageName}.injection.Dagger${componentClass};
 
 import javax.inject.Inject;
 
@@ -8,13 +17,13 @@ public final class ${activityClass} extends BaseActivity implements ${viewClass}
     ${presenterClass} mPresenter;
 
     @Override
-    protected void setupComponent(${parentComponentClass} parentComponent) 
+    protected void setupComponent(@NonNull AppComponent parentComponent) 
     {
-        new Dagger${componentClass}.builder()
-        .${parentComponentClass?uncap_first}(parentComponent)
-        .${moduleClass?uncap_first}(new ${moduleClass}(this))
-        .build()
-        .inject(this);
+        Dagger${componentClass}.builder()
+            .appComponent(parentComponent)
+            .${moduleClass?uncap_first}(new ${moduleClass}(this))
+            .build()
+            .inject(this);
     }
 
     @Override

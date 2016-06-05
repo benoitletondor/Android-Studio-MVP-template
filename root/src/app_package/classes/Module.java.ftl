@@ -1,6 +1,12 @@
-package ${packageName};
+package ${packageName}.injection;
 
 import android.support.annotation.NonNull;
+
+import ${packageName}.view.${viewClass};
+import ${packageName}.interactor.${interactorClass};
+import ${packageName}.interactor.impl.${interactorClass}Impl;
+import ${packageName}.presenter.${presenterClass};
+import ${packageName}.presenter.impl.${presenterClass}Impl;
 
 import dagger.Module;
 import dagger.Provides;

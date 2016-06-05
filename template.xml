@@ -70,14 +70,6 @@
         help="The name of the Interactor to create" />     
 
     <parameter
-        id="parentComponentClass"
-        name="Main Component Name"
-        type="string"
-        constraints="class|nonempty"
-        default="AppComponent"
-        help="The name of the root application compomponent" />
-
-    <parameter
         id="scopeClass"
         name="Scope Name"
         type="string"
@@ -114,4 +106,4 @@
     <globals file="globals.xml.ftl" />
     <execute file="recipe.xml.ftl" />
 
-</template>
+</template>  

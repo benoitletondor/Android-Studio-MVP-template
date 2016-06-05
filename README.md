@@ -1,4 +1,4 @@
-# Android Studio Template MVP Template
+# Android Studio MVP Template
 
 This is an Android Studio template for MVC. 
 
@@ -6,7 +6,8 @@ It is inspired by [u2020-mvp-android-studio-template](https://github.com/LiveTyp
 
 It follows [Antonio Leiva's MVC implementation guide for Android](http://antonioleiva.com/mvp-android/) and will generate:
 
-- An Activity
+- An `App` class that you should use as your Application, a `BaseActivity`, a `BasePresenter` and a `BaseInteractor`
+- An `Activity`
 - A layout for your Activity
 - A `Scope`, a `Component` and a `Module` for Dagger 2 injection
 - A `View` interface for your Activity
@@ -21,23 +22,26 @@ You must use [Dagger 2](http://google.github.io/dagger/) for dependency injectio
 
 ## Installation
 
-### For Mac:
+#### For Mac:
 
 Just copy all files to `$ANDROID_STUDIO_FOLDER$/Contents/plugins/android/lib/templates/activities/MVP`
 
-### For Windows:
+#### For Windows:
 
 Just copy all files to `$ANDROID_STUDIO_FOLDER$\plugins\android\lib\templates\activities\MVP`
 
 ## How to use
 
+First select your root package folder and then create a new `MVP Activity`:
+
 ![How to use](static/howtouse.png "How to use")
+
+> It's important that you create it from the root package, otherwise it will re-create the whole MVP hierarchy under your subpackage which is not what you want.
 
 ## TODO
 
-- Provide `BaseActivity`, `BasePresenter` and `BaseInteractor` implementations
+- Better hierarchy management
 - Manage Fragment
-- Add a hierarchy management
 
 ## License
 
