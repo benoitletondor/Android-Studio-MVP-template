@@ -5,10 +5,27 @@
     name="MVP Activity"
     minApi="7"
     minBuildApi="14"
-    description="Creates a new MVP template">
+    description="Creates a new MVP activity">
 
     <category value="MVP" />
     <formfactor value="Mobile" />
+
+    <parameter
+        id="generateBoilerplate"
+        name="Generate hierarchy boilerplate"
+        type="boolean"
+        default="false"
+        help="If true, the base hierarchy and classes will be generated. Be sure to add the generated Application class in your manifest" />
+
+    <parameter
+        id="appClass"
+        name="Application Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="App"
+        default="App"
+        visibility="generateBoilerplate"
+        help="The name of the application class to create" />
 
     <parameter
         id="activityClass"
@@ -70,15 +87,6 @@
         help="The name of the Interactor to create" />     
 
     <parameter
-        id="scopeClass"
-        name="Scope Name"
-        type="string"
-        constraints="class|unique|nonempty"
-        suggest="${underscoreToCamelCase(viewClass)}Scope"
-        default="MainScope"
-        help="The name of the scope class to create" />
-
-    <parameter
         id="componentClass"
         name="Component Name"
         type="string"
@@ -95,13 +103,6 @@
         default="MainModule"
         suggest="${underscoreToCamelCase(viewClass)}Module"
         help="The name of the Module to create" />         
-
-
-    <!-- 512x512 thumbnails relative to template.xml -->
-    <thumbs>
-        <!-- default thumbnail is required -->
-        <thumb>Android_Studio_icon.png</thumb>
-    </thumbs>
 
     <globals file="globals.xml.ftl" />
     <execute file="recipe.xml.ftl" />

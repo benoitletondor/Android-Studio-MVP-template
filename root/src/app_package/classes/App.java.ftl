@@ -7,7 +7,7 @@ import ${packageName}.injection.AppComponent;
 import ${packageName}.injection.AppModule;
 import ${packageName}.injection.DaggerAppComponent;
 
-public final class App extends Application
+public final class ${appClass} extends Application
 {
     private AppComponent mAppComponent;
 

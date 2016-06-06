@@ -2,7 +2,7 @@ package ${packageName}.injection;
 
 import android.content.Context;
 
-import ${packageName}.App;
+import ${packageName}.${appClass};
 
 import javax.inject.Singleton;
 
@@ -13,5 +13,5 @@ import dagger.Component;
 public interface AppComponent
 {
     Context getAppContext();
-    App getApp();
+    ${appClass} getApp();
 }

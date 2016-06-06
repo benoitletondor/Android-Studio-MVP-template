@@ -2,14 +2,15 @@
 <recipe>
     <#include "../common/recipe_manifest.xml.ftl" />
 
+<#if generateBoilerplate>    
+
     <#include "hierarchy_recipe.xml.ftl" />
 
     <#include "base_files_recipe.xml.ftl" />
 
-    <#include "activity_layout_recipe.xml.ftl" />
+</#if>
 
-    <instantiate from="src/app_package/classes/Scope.java.ftl"
-      to="${escapeXmlAttribute(srcOut)}/injection/${scopeClass}.java" />
+    <#include "activity_layout_recipe.xml.ftl" />
 
     <instantiate from="src/app_package/classes/Activity.java.ftl"
       to="${escapeXmlAttribute(srcOut)}/view/impl/${activityClass}.java" />
