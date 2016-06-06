@@ -1,7 +1,9 @@
 package ${packageName}.view.impl;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import ${packageName}.R;
 import ${packageName}.view.${viewClass};
 import ${packageName}.presenter.BasePresenter;
 import ${packageName}.presenter.${presenterClass};
@@ -15,6 +17,13 @@ public final class ${activityClass} extends BaseActivity implements ${viewClass}
 {
     @Inject 
     ${presenterClass} mPresenter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.${layoutName});
+    }
 
     @Override
     protected void setupComponent(@NonNull AppComponent parentComponent) 
