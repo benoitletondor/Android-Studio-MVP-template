@@ -1,18 +1,8 @@
 <?xml version="1.0"?>
 <recipe>
-    <#include "../common/recipe_manifest.xml.ftl" />
+    <#include "fragment_layout_recipe.xml.ftl" />
 
-<#if generateBoilerplate>    
-
-    <#include "hierarchy_recipe.xml.ftl" />
-
-    <#include "base_files_recipe.xml.ftl" />
-
-</#if>
-
-    <#include "activity_layout_recipe.xml.ftl" />
-
-    <instantiate from="src/app_package/classes/Activity.java.ftl"
+    <instantiate from="src/app_package/classes/Fragment.java.ftl"
       to="${escapeXmlAttribute(srcOut)}/view/impl/${activityClass}.java" />
 
     <instantiate from="src/app_package/classes/View.java.ftl"

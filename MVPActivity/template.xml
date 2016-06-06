@@ -11,23 +11,6 @@
     <formfactor value="Mobile" />
 
     <parameter
-        id="generateBoilerplate"
-        name="Generate hierarchy boilerplate"
-        type="boolean"
-        default="false"
-        help="If true, the base hierarchy and classes will be generated. Be sure to add the generated Application class in your manifest" />
-
-    <parameter
-        id="appClass"
-        name="Application Name"
-        type="string"
-        constraints="class|unique|nonempty"
-        suggest="App"
-        default="App"
-        visibility="generateBoilerplate"
-        help="The name of the application class to create" />
-
-    <parameter
         id="activityClass"
         name="Activity Name"
         type="string"

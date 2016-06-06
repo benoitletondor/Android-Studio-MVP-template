@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<template
+    format="1"
+    revision="1"
+    name="MVP Boilerplate"
+    minApi="7"
+    minBuildApi="14"
+    description="Creates a hierarchy for MVP with base classes">
+
+    <category value="MVP" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="appClass"
+        name="Application Name"
+        type="string"
+        constraints="class|nonempty"
+        suggest="App"
+        default="App"
+        help="The name of the application class to create" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <execute file="recipe.xml.ftl" />
+
+</template>  

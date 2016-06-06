@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<template
+    format="1"
+    revision="1"
+    name="MVP Fragment"
+    minApi="7"
+    minBuildApi="14"
+    description="Creates a new MVP fragment">
+
+    <category value="MVP" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="activityClass"
+        name="Fragment Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="CustomFragment"
+        help="The name of the fragment class to create" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="fragment_${classToResource(activityClass)}"
+        default="fragment_custom"
+        help="The name of the layout to create for the fragment" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <parameter
+        id="viewClass"
+        name="View Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainView"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}View"
+        help="The name of the View to create" />
+
+    <parameter
+        id="presenterClass"
+        name="Presenter Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainPresenter"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}Presenter"
+        help="The name of the Presenter to create" />
+
+    <parameter
+        id="interactorClass"
+        name="Interactor Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainInteractor"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}Interactor"
+        help="The name of the Interactor to create" />     
+
+    <parameter
+        id="componentClass"
+        name="Component Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainComponent"
+        suggest="${underscoreToCamelCase(viewClass)}Component"
+        help="The name of the Component to create" />
+
+    <parameter
+        id="moduleClass"
+        name="Module Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainModule"
+        suggest="${underscoreToCamelCase(viewClass)}Module"
+        help="The name of the Module to create" />         
+
+    <execute file="recipe.xml.ftl" />
+
+</template>  

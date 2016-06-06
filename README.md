@@ -12,6 +12,7 @@ com.company.app
     |   - ActivityScope
     |   - AppComponent
     |   - AppModule
+    |   - FragmentScope
     |   - MainViewComponent
     |   - MainViewModule
     +-- interactor
@@ -27,12 +28,11 @@ com.company.app
     +-- view
     |   +-- impl
     |       - BaseActivity
+    |       - BaseFragment
     |       - MainActivity
     |   - MainView
     | - YourApp
 ```
-
-Disclaimer: This is a work in progress made for my own needs.
 
 ## Prerequisites
 
@@ -42,19 +42,27 @@ You must use [Dagger 2](http://google.github.io/dagger/) for dependency injectio
 
 #### For Mac:
 
-Just copy all files to `$ANDROID_STUDIO_FOLDER$/Contents/plugins/android/lib/templates/activities/MVP`
+Just copy all 3 directories `MVPFragment`, `MVPActivity` and `MVPBoilerplate` to `$ANDROID_STUDIO_FOLDER$/Contents/plugins/android/lib/templates/activities/`
 
 #### For Windows:
 
-Just copy all files to `$ANDROID_STUDIO_FOLDER$\plugins\android\lib\templates\activities\MVP`
+Just copy all 3 directories `MVPFragment`, `MVPActivity` and `MVPBoilerplate` to `$ANDROID_STUDIO_FOLDER$\plugins\android\lib\templates\activities\`
 
 ## How to use
 
-First select your root package folder and then create a new `MVP Activity`:
+#### 1. Generate base boilerplate
 
-![How to use](static/howtouse.png "How to use")
+First of all, create the base hierarchy and classes using `MVP Boilerplate` from the **root package folder**. This needs to be done only once per project:
 
-It will create:
+![Create MVP Boilerplate](static/createboilerplate.png "Create MVP Boilerplate")
+
+It will generate an `App` class that you should use as your Application, an `ActivityScope`, `FragmentScope`, `AppModule` and `AppComponent` for injection, a `BaseActivity`, `BaseFragment`, `BasePresenter` and `BaseInteractor`.
+
+> Be sure to use the generated `App` as your Application into your manifest!
+
+#### 2. Create your first activity
+
+Then you can create a new `MVP Activity`. It will create:
 
 - An `Activity`
 - A layout for your Activity
@@ -63,14 +71,7 @@ It will create:
 - A `Presenter` interface and default implementation class
 - An `Interactor` interface and default implementation class for your model
 
-If you select to generate the hierarchy boilerplate, it will also generate an `App` class that you should use as your Application, an `ActivityScope` for injection, a `BaseActivity`, a `BasePresenter` and a `BaseInteractor`.
-
 > It's important that you **create it from the root package**, otherwise it will re-create the whole MVP hierarchy under your subpackage which is not what you want.
-
-## TODO
-
-- Better hierarchy management
-- Manage Fragment
 
 ## License
 

@@ -11,8 +11,14 @@
     <instantiate from="src/app_package/classes/ActivityScope.java.ftl"
       to="${escapeXmlAttribute(srcOut)}/injection/ActivityScope.java" />
 
+    <instantiate from="src/app_package/classes/FragmentScope.java.ftl"
+      to="${escapeXmlAttribute(srcOut)}/injection/FragmentScope.java" />
+
     <instantiate from="src/app_package/classes/BaseActivity.java.ftl"
        to="${escapeXmlAttribute(srcOut)}/view/impl/BaseActivity.java" />
+
+    <instantiate from="src/app_package/classes/BaseFragment.java.ftl"
+       to="${escapeXmlAttribute(srcOut)}/view/impl/BaseFragment.java" />
 
     <instantiate from="src/app_package/classes/BasePresenter.java.ftl"
        to="${escapeXmlAttribute(srcOut)}/presenter/BasePresenter.java" />
