@@ -1,18 +1,36 @@
 # Android Studio MVP Template
 
-This is an Android Studio template for MVC. 
+This is an Android Studio template for MVP. 
 
-It is inspired by [u2020-mvp-android-studio-template](https://github.com/LiveTyping/u2020-mvp-android-studio-template) but works in a different way (Removes the scene part and add the interactor object).
+It is inspired by [u2020-mvp-android-studio-template](https://github.com/LiveTyping/u2020-mvp-android-studio-template) and follows [Antonio Leiva's MVP implementation guide for Android](http://antonioleiva.com/mvp-android/).
 
-It follows [Antonio Leiva's MVC implementation guide for Android](http://antonioleiva.com/mvp-android/) and will generate:
+Here's the hierarchy it follows:
 
-- An `App` class that you should use as your Application, a `BaseActivity`, a `BasePresenter` and a `BaseInteractor`
-- An `Activity`
-- A layout for your Activity
-- A `Scope`, a `Component` and a `Module` for Dagger 2 injection
-- A `View` interface for your Activity
-- A `Presenter` interface and default implementation class
-- An `Interactor` interface and default implementation class for your model
+```
+com.company.app
+    +-- injection
+    |   - ActivityScope
+    |   - AppComponent
+    |   - AppModule
+    |   - MainViewComponent
+    |   - MainViewModule
+    +-- interactor
+    |   +-- impl
+    |       - MainViewInteractorImpl
+    |   - BaseInteractor
+    |   - MainViewInteractor
+    +-- presenter
+    |   +-- impl
+    |       - MainViewPresenterImpl
+    |   - BasePresenter
+    |   - MainViewPresenter
+    +-- view
+    |   +-- impl
+    |       - BaseActivity
+    |       - MainActivity
+    |   - MainView
+    | - YourApp
+```
 
 Disclaimer: This is a work in progress made for my own needs.
 
@@ -36,7 +54,18 @@ First select your root package folder and then create a new `MVP Activity`:
 
 ![How to use](static/howtouse.png "How to use")
 
-> It's important that you create it from the root package, otherwise it will re-create the whole MVP hierarchy under your subpackage which is not what you want.
+It will create:
+
+- An `Activity`
+- A layout for your Activity
+- A `Component` and a `Module` for Dagger 2 injection
+- A `View` interface for your Activity
+- A `Presenter` interface and default implementation class
+- An `Interactor` interface and default implementation class for your model
+
+If you select to generate the hierarchy boilerplate, it will also generate an `App` class that you should use as your Application, an `ActivityScope` for injection, a `BaseActivity`, a `BasePresenter` and a `BaseInteractor`.
+
+> It's important that you **create it from the root package**, otherwise it will re-create the whole MVP hierarchy under your subpackage which is not what you want.
 
 ## TODO
 
