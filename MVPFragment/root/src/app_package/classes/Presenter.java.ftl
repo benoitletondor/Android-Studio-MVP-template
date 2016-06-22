@@ -1,6 +1,8 @@
 package ${packageName}.presenter;
 
-public interface ${presenterClass} extends BasePresenter
+import ${packageName}.view.${viewClass};
+
+public interface ${presenterClass} extends BasePresenter<${viewClass}>
 {
 	
 }

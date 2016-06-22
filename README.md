@@ -2,7 +2,9 @@
 
 This is an Android Studio template for MVP. 
 
-It is inspired by [u2020-mvp-android-studio-template](https://github.com/LiveTyping/u2020-mvp-android-studio-template) and follows [Antonio Leiva's MVP implementation guide for Android](http://antonioleiva.com/mvp-android/).
+It is inspired by [u2020-mvp-android-studio-template](https://github.com/LiveTyping/u2020-mvp-android-studio-template) and follows [Antonio Leiva's MVP implementation guide for Android](http://antonioleiva.com/mvp-android/). It also implements presenter surviving orientation changes following [Antonio Gutierrez's article](https://medium.com/@czyrux/presenter-surviving-orientation-changes-with-loaders-6da6d86ffbbf).
+
+> If you are looking for the first version, without presentation survival, please download the [first release](https://github.com/benoitletondor/Android-Studio-MVP-template/tree/1.0). Note that version 2 (current one) is not compatible with version 1.
 
 Here's the hierarchy it follows:
 
@@ -22,6 +24,7 @@ com.company.app
     |   - MainViewInteractor
     +-- presenter
     |   +-- impl
+    |       - BasePresenterImpl
     |       - MainViewPresenterImpl
     |   - BasePresenter
     |   - MainViewPresenter
@@ -56,7 +59,7 @@ First of all, create the base hierarchy and classes using `MVP Boilerplate` from
 
 ![Create MVP Boilerplate](static/createboilerplate.png "Create MVP Boilerplate")
 
-It will generate an `App` class that you should use as your Application, an `ActivityScope`, `FragmentScope`, `AppModule` and `AppComponent` for injection, a `BaseActivity`, `BaseFragment`, `BasePresenter` and `BaseInteractor`.
+It will generate an `App` class that you should use as your Application, an `ActivityScope`, `FragmentScope`, `AppModule` and `AppComponent` for injection, a `BaseActivity`, `BaseFragment`, `BasePresenter`, `BasePresenterImpl` and `BaseInteractor`. It also generates the common classes for presenter persistancy (`PresenterFactory` and `PresenterLoader`).
 
 > Be sure to use the generated `App` as your Application into your manifest!
 
@@ -72,6 +75,24 @@ Then you can create a new `MVP Activity`. It will create:
 - An `Interactor` interface and default implementation class for your model
 
 > It's important that you **create it from the root package**, otherwise it will re-create the whole MVP hierarchy under your subpackage which is not what you want.
+
+## Presenter lifecycle (Important!)
+
+Your presenter will be kept across activity re-creation on orientation changes using a [Loader](https://developer.android.com/guide/components/loaders.html). For more details about how its done, read [Antonio Gutierrez's article](https://medium.com/@czyrux/presenter-surviving-orientation-changes-with-loaders-6da6d86ffbbf).
+
+It means that:
+
+- You want to be sure to update your view state on each `onStart` call of your presenter since your view may have been destroyed and re-created since last `stop`.
+- You should use the `firstStart` parameter of the `onStart` method to know if it's the first time your presenter has been started. This boolean will be true only the first time in the whole presenter lifetime (including after activity re-creation).
+- You should *not* stop your background operations on the `onStop` method (things like HTTP calls or database connection) since your view may still be available (on the next `onStart` call).
+- You **must** stop all background operation on the `onPresenterDestroyed` method. When this method is reached, it means that your view is completely destroyed and will not be re-created later.
+
+You should also be **very** careful about:
+
+- Since the presenter is loaded asynchronously by a `Loader`, it means that it's not available before the view actually started. So **the `mPresenter` variable will be null before reaching `onStart`**.
+- To avoid leaks, your presenter will not keep a reference on your view when this view is stopped. It means that **your view is guaranteed to be available from the `onStart` method to the `onStop`**. It also means it will be `null` outside of this scope.
+
+> To ensure those last 2 points, `mView` and `mPresenter` are annotated with `@Nullable`, to enforce the check by the linter. It's a good idea to surround all calls with `!=null`.
 
 ## License
 

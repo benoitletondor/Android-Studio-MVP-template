@@ -1,7 +1,5 @@
 package ${packageName}.presenter.impl;
 
-import android.os.Bundle;
-
 import android.support.annotation.NonNull;
 
 import ${packageName}.presenter.${presenterClass};
@@ -10,47 +8,46 @@ import ${packageName}.interactor.${interactorClass};
 
 import javax.inject.Inject;
 
-public final class ${presenterClass}Impl implements ${presenterClass}
+public final class ${presenterClass}Impl extends BasePresenterImpl<${viewClass}> implements ${presenterClass}
 {
-    /**
-     * The view
-     */
-    @NonNull
-    private final ${viewClass} mView;
     /**
      * The interactor
      */
     @NonNull
     private final ${interactorClass} mInteractor;
 
-    @Inject
-    public ${presenterClass}Impl(@NonNull ${viewClass} view, @NonNull ${interactorClass} interactor)
-    {
-    	mView = view;
-    	mInteractor = interactor;
-    }
+    // The view is available using the mView variable
 
-    @Override
-    public void onRestoreState(@NonNull Bundle savedInstanceState)
+    @Inject
+    public ${presenterClass}Impl(@NonNull ${interactorClass} interactor)
     {
-        
+        mInteractor = interactor;
     }
 
     @Override
     public void onStart(boolean firstStart)
     {
+        super.onStart(firstStart);
 
+        // Your code here. Your view is available using mView and will not be null until next onStop()
     }
 
     @Override
     public void onStop()
     {
+        // Your code here, mView will be null after this method until next onStart()
 
+        super.onStop();
     }
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle outState)
+    public void onPresenterDestroyed()
     {
+        /*
+         * Your code here. After this method, your presenter (and view) will be completely destroyed
+         * so make sure to cancel any HTTP call or database connection
+         */
 
+        super.onPresenterDestroyed();
     }
 }

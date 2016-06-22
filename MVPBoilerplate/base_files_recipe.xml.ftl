@@ -25,4 +25,13 @@
 
     <instantiate from="src/app_package/classes/BaseInteractor.java.ftl"
        to="${escapeXmlAttribute(srcOut)}/interactor/BaseInteractor.java" />   
+
+    <instantiate from="src/app_package/classes/BasePresenterImpl.java.ftl"
+       to="${escapeXmlAttribute(srcOut)}/presenter/impl/BasePresenterImpl.java" />  
+
+    <instantiate from="src/app_package/classes/PresenterFactory.java.ftl"
+       to="${escapeXmlAttribute(srcOut)}/presenter/loader/PresenterFactory.java" />
+
+    <instantiate from="src/app_package/classes/PresenterLoader.java.ftl"
+       to="${escapeXmlAttribute(srcOut)}/presenter/loader/PresenterLoader.java" />  
 </recipe>
