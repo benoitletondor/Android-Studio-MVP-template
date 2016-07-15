@@ -48,8 +48,15 @@ public abstract class BaseFragment<P extends BasePresenter<V>, V> extends Fragme
         mUniqueLoaderIdentifier = savedInstanceState == null ? BaseActivity.sViewCounter.incrementAndGet() : savedInstanceState.getInt(LOADER_ID_SAVED_STATE);
 
         injectDependencies();
+    }
 
-        getLoaderManager().initLoader(mUniqueLoaderIdentifier, null, this).startLoading();
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+
+        // See http://stackoverflow.com/a/32289822/2508174 for the use of getActivity().getSupportLoaderManager()
+        getActivity().getSupportLoaderManager().initLoader(mUniqueLoaderIdentifier, null, this).startLoading();
     }
 
     private void injectDependencies()
