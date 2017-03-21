@@ -25,9 +25,9 @@ public final class ${presenterClass}Impl extends BasePresenterImpl<${viewClass}>
     }
 
     @Override
-    public void onStart(boolean firstStart)
+    public void onStart(boolean viewCreated)
     {
-        super.onStart(firstStart);
+        super.onStart(viewCreated);
 
         // Your code here. Your view is available using mView and will not be null until next onStop()
     }

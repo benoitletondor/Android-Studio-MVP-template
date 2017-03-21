@@ -14,18 +14,9 @@ import ${packageName}.injection.AppComponent;
 import ${packageName}.presenter.BasePresenter;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class BaseActivity<P extends BasePresenter<V>, V> extends AppCompatActivity implements LoaderManager.LoaderCallbacks<P>
 {
-    /**
-     * Common counter for views (fragments and activities) that is used to generate loader ids
-     */
-    static final AtomicInteger sViewCounter = new AtomicInteger(0);
-
-    private final static String RECREATION_SAVED_STATE = "recreation_state";
-    private final static String LOADER_ID_SAVED_STATE = "loader_id_state";
-
     /**
      * Is this the first start of the activity (after onCreate)
      */
@@ -40,10 +31,6 @@ public abstract class BaseActivity<P extends BasePresenter<V>, V> extends AppCom
      * Will be true if presenter wasn't loaded when {@link #onStart()} is reached
      */
     private final AtomicBoolean mNeedToCallStart = new AtomicBoolean(false);
-    /**
-     * Unique identifier for the loader, persisted across re-creation
-     */
-    private int mUniqueLoaderIdentifier;
 
 
     @Override
@@ -51,12 +38,11 @@ public abstract class BaseActivity<P extends BasePresenter<V>, V> extends AppCom
     {
         super.onCreate(savedInstanceState);
 
-        mFirstStart = savedInstanceState == null || savedInstanceState.getBoolean(RECREATION_SAVED_STATE);
-        mUniqueLoaderIdentifier = savedInstanceState == null ? BaseActivity.sViewCounter.incrementAndGet() : savedInstanceState.getInt(LOADER_ID_SAVED_STATE);
+        mFirstStart = true;
 
         injectDependencies();
 
-        getSupportLoaderManager().initLoader(mUniqueLoaderIdentifier, null, this).startLoading();
+        getSupportLoaderManager().initLoader(0, null, this).startLoading();
     }
 
     private void injectDependencies()
@@ -105,15 +91,6 @@ public abstract class BaseActivity<P extends BasePresenter<V>, V> extends AppCom
         }
 
         super.onStop();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState)
-    {
-        super.onSaveInstanceState(outState);
-
-        outState.putBoolean(RECREATION_SAVED_STATE, mFirstStart);
-        outState.putInt(LOADER_ID_SAVED_STATE, mUniqueLoaderIdentifier);
     }
 
     @Override

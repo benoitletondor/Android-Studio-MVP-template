@@ -16,9 +16,9 @@ public interface BasePresenter<V>
      * Called every time the view starts, the view is guarantee to be not null starting at this
      * method, until {@link #onStop()} is called.
      *
-     * @param firstStart true if it's the first start of this presenter, only once in the presenter lifetime
+     * @param viewCreated true if the view has just been created
      */
-    void onStart(boolean firstStart);
+    void onStart(boolean viewCreated);
 
     /**
      * Called every time the view stops. After this method, the view will be null until next 

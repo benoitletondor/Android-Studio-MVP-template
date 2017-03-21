@@ -17,9 +17,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class BaseFragment<P extends BasePresenter<V>, V> extends Fragment implements LoaderManager.LoaderCallbacks<P>
 {
-    private final static String RECREATION_SAVED_STATE = "recreation_state";
-    private final static String LOADER_ID_SAVED_STATE = "loader_id_state";
-
     /**
      * The presenter for this view
      */
@@ -34,18 +31,13 @@ public abstract class BaseFragment<P extends BasePresenter<V>, V> extends Fragme
      * Will be true if presenter wasn't loaded when {@link #onStart()} is reached
      */
     private final AtomicBoolean mNeedToCallStart = new AtomicBoolean(false);
-    /**
-     * Unique identifier for the loader, persisted across re-creation
-     */
-    private int mUniqueLoaderIdentifier;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
-        mFirstStart = savedInstanceState == null || savedInstanceState.getBoolean(RECREATION_SAVED_STATE);
-        mUniqueLoaderIdentifier = savedInstanceState == null ? BaseActivity.sViewCounter.incrementAndGet() : savedInstanceState.getInt(LOADER_ID_SAVED_STATE);
+        mFirstStart = true;
 
         injectDependencies();
     }
@@ -55,8 +47,7 @@ public abstract class BaseFragment<P extends BasePresenter<V>, V> extends Fragme
     {
         super.onActivityCreated(savedInstanceState);
 
-        // See http://stackoverflow.com/a/32289822/2508174 for the use of getActivity().getSupportLoaderManager()
-        getActivity().getSupportLoaderManager().initLoader(mUniqueLoaderIdentifier, null, this).startLoading();
+        getLoaderManager().initLoader(0, null, this).startLoading();
     }
 
     private void injectDependencies()
@@ -105,15 +96,6 @@ public abstract class BaseFragment<P extends BasePresenter<V>, V> extends Fragme
         }
 
         super.onStop();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState)
-    {
-        super.onSaveInstanceState(outState);
-
-        outState.putBoolean(RECREATION_SAVED_STATE, mFirstStart);
-        outState.putInt(LOADER_ID_SAVED_STATE, mUniqueLoaderIdentifier);
     }
 
     @Override

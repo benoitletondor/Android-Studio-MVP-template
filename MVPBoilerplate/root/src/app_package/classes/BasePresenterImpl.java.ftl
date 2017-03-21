@@ -25,7 +25,7 @@ public abstract class BasePresenterImpl<V> implements BasePresenter<V>
 
 
     @Override
-    public void onStart(boolean firstStart)
+    public void onStart(boolean viewCreated)
     {
 
     }
