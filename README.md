@@ -4,7 +4,7 @@ This is an Android Studio template for MVP.
 
 It is inspired by [u2020-mvp-android-studio-template](https://github.com/LiveTyping/u2020-mvp-android-studio-template) and follows [Antonio Leiva's MVP implementation guide for Android](http://antonioleiva.com/mvp-android/). It also implements presenter surviving orientation changes following [Antonio Gutierrez's article](https://medium.com/@czyrux/presenter-surviving-orientation-changes-with-loaders-6da6d86ffbbf).
 
-> If you are looking for the first version, without presentation survival, please download the [first release](https://github.com/benoitletondor/Android-Studio-MVP-template/tree/1.0). Note that version 2 (current one) is not compatible with version 1.
+> If you are looking for the first version, without presenter survival, please download the [first release](https://github.com/benoitletondor/Android-Studio-MVP-template/tree/1.0). Note that version 2 (current one) is not compatible with version 1.
 
 Here's the hierarchy it follows:
 
@@ -45,6 +45,16 @@ You must use [Dagger 2](http://google.github.io/dagger/) for dependency injectio
 
 #### For Mac:
 
+- If you have a standard Android Studio installation:
+
+Just run the install script at the root of this repository:
+
+```
+./install.sh
+```
+
+- Manual installation:
+
 Just copy all 3 directories `MVPFragment`, `MVPActivity` and `MVPBoilerplate` to `$ANDROID_STUDIO_FOLDER$/Contents/plugins/android/lib/templates/activities/`
 
 #### For Windows:
@@ -83,7 +93,7 @@ Your presenter will be kept across activity re-creation on orientation changes u
 It means that:
 
 - You want to be sure to update your view state on each `onStart` call of your presenter since your view may have been destroyed and re-created since last `stop`.
-- You should use the `firstStart` parameter of the `onStart` method to know if it's the first time your presenter has been started. This boolean will be true only the first time in the whole presenter lifetime (including after activity re-creation).
+- You should use the `viewCreated` parameter of the `onStart` method to know if the view has been created or re-created (e.g. following a screen rotation). This boolean will be true only if the view has just been created so **if it's `true` you should update your view according to the presenter's state**.
 - You should *not* stop your background operations on the `onStop` method (things like HTTP calls or database connection) since your view may still be available (on the next `onStart` call).
 - You **must** stop all background operation on the `onPresenterDestroyed` method. When this method is reached, it means that your view is completely destroyed and will not be re-created later.
 
@@ -94,9 +104,13 @@ You should also be **very** careful about:
 
 > To ensure those last 2 points, `mView` and `mPresenter` are annotated with `@Nullable`, to enforce the check by the linter. It's a good idea to surround all calls with `!=null`.
 
+## Contributors
+
+- [Martyn Haigh](https://github.com/martynhaigh): MacOS installation script
+
 ## License
 
-    Copyright 2016 Benoit LETONDOR
+    Copyright 2017 Benoit LETONDOR
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
