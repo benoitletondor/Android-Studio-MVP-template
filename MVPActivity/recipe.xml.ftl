@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <recipe>
-    <#include "../common/recipe_manifest.xml.ftl" />
+    <merge from="AndroidManifest.xml.ftl" to="${escapeXmlAttribute(manifestOut)}/AndroidManifest.xml" />
 
     <#include "activity_layout_recipe.xml.ftl" />
 
@@ -28,4 +28,6 @@
     <instantiate from="src/app_package/classes/Interactor.java.ftl"
       to="${escapeXmlAttribute(srcOut)}/interactor/${interactorClass}.java" />
 
+    <instantiate from="dimens.xml.ftl"
+      to="${escapeXmlAttribute(resOut)}/values/dimens.xml" />
 </recipe>
