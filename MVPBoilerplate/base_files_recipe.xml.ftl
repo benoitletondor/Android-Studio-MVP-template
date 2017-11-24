@@ -34,4 +34,8 @@
 
     <instantiate from="src/app_package/classes/PresenterLoader.java.ftl"
        to="${escapeXmlAttribute(srcOut)}/presenter/loader/PresenterLoader.java" />  
+       
+    <merge from="AndroidManifest.xml.ftl" to="${escapeXmlAttribute(manifestOut)}/AndroidManifest.xml" />
+    <merge from="build.gradle.ftl" to="${escapeXmlAttribute(projectOut)}/build.gradle" />
+
 </recipe>

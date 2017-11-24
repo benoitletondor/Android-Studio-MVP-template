@@ -26,6 +26,7 @@
         constraints="package"
         default="com.mycompany.myapp" />
 
+    <globals file="globals.xml.ftl" />
     <execute file="recipe.xml.ftl" />
 
 </template>  
