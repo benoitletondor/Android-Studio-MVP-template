@@ -107,6 +107,7 @@ You should also be **very** careful about:
 ## Contributors
 
 - [Martyn Haigh](https://github.com/martynhaigh): MacOS installation script
+- [Boris Strandjev](https://github.com/bstrandjev): Minor tweaks and enhancements
 
 ## License
 
