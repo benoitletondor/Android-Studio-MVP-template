@@ -3,7 +3,7 @@ package ${packageName}.view.impl;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import ${applicationPackage}.R;
+import ${packageName}.R;
 import ${packageName}.view.${viewClass};
 import ${packageName}.presenter.loader.PresenterFactory;
 import ${packageName}.presenter.${presenterClass};
