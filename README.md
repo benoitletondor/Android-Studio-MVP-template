@@ -99,7 +99,7 @@ It means that:
 
 You should also be **very** careful about:
 
-- Since the presenter is loaded asynchronously by a `Loader`, it means that it's not available before the view actually started. So **the `mPresenter` variable will be null before reaching `onStart`**.
+- Since the presenter is loaded asynchronously by a `Loader`, it means that it's not available before the view actually started. So **the `mPresenter` variable can (and will probably) be null when your activity or fragment starts** (you should **not** call your presenter directly into `onCreate`, `onStart` or `onResume` methods).
 - To avoid leaks, your presenter will not keep a reference on your view when this view is stopped. It means that **your view is guaranteed to be available from the `onStart` method to the `onStop`**. It also means it will be `null` outside of this scope.
 
 > To ensure those last 2 points, `mView` and `mPresenter` are annotated with `@Nullable`, to enforce the check by the linter. It's a good idea to surround all calls with `!=null`.
