@@ -108,10 +108,11 @@ You should also be **very** careful about:
 
 - [Martyn Haigh](https://github.com/martynhaigh): MacOS installation script
 - [Boris Strandjev](https://github.com/bstrandjev): Minor tweaks and enhancements
+- [Brian Hoang](https://github.com/namhvcntt): AndroidX migration
 
 ## License
 
-    Copyright 2017 Benoit LETONDOR
+    Copyright 2019 Benoit LETONDOR
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
