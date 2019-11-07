@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import ${packageName}.R;
 import ${packageName}.view.${viewClass};
 import ${packageName}.presenter.loader.PresenterFactory;
