@@ -1,7 +1,7 @@
 package ${packageName}.view.impl;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import ${packageName}.R;
 import ${packageName}.view.${viewClass};

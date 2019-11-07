@@ -1,6 +1,6 @@
 package ${packageName}.view;
 
-import android.support.annotation.UiThread;
+import androidx.annotation.UiThread;
 
 @UiThread
 public interface ${viewClass} 
