@@ -1,7 +1,7 @@
 package ${packageName};
 
 import android.app.Application;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import ${packageName}.injection.AppComponent;
 import ${packageName}.injection.AppModule;

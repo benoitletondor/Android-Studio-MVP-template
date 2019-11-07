@@ -1,6 +1,6 @@
 package ${packageName}.presenter.impl;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import ${packageName}.presenter.${presenterClass};
 import ${packageName}.view.${viewClass};

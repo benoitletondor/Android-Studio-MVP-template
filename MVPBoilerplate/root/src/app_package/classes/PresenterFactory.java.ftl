@@ -1,6 +1,6 @@
 package ${packageName}.presenter.loader;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import ${packageName}.presenter.BasePresenter;
 

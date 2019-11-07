@@ -1,6 +1,6 @@
 package ${packageName}.injection;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import ${packageName}.interactor.${interactorClass};
 import ${packageName}.interactor.impl.${interactorClass}Impl;
